@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"text/tabwriter"
 
 	"github.com/vmorsell/jira-cli/jira"
 
@@ -23,7 +25,17 @@ var getIssue = &cli.Command{
 		if err != nil {
 			return err
 		}
-		fmt.Println(res)
+		if res.Fields == nil {
+			fmt.Printf("%s (missing data)\n", res.Key)
+			return nil
+		}
+
+		w := tabwriter.NewWriter(os.Stdout, 10, 0, 3, ' ', 0)
+		fmt.Fprintf(w, "%s\t%s\t(%s)\t[%s]\n", res.Key, res.Fields.Summary, res.Fields.Assignee.DisplayName, res.Fields.Status.Name)
+		for _, s := range res.Fields.Subtasks {
+			fmt.Fprintf(w, " - %s\t%s\t(%s)\t[%s]\n", s.Key, s.Fields.Summary, res.Fields.Assignee.DisplayName, res.Fields.Status.Name)
+		}
+		w.Flush()
 
 		return nil
 	},
