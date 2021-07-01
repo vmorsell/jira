@@ -11,6 +11,12 @@ func main() {
 	app := &cli.App{
 		Name: "Jira CLI",
 		Commands: []*cli.Command{
+			{
+				Name: "get",
+				Subcommands: []*cli.Command{
+					getIssue,
+				},
+			},
 			auth,
 		},
 	}
