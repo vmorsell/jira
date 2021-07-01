@@ -11,6 +11,7 @@ func main() {
 	app := &cli.App{
 		Name: "Jira CLI",
 		Commands: []*cli.Command{
+			auth,
 		},
 	}
 
