@@ -5,12 +5,34 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/vmorsell/jira-cli/authstore"
 )
 
 type Client struct {
 	Tenant string
 	Email  string
 	Token  string
+}
+
+func New() *Client {
+	return &Client{}
+}
+
+func (c *Client) WithCredsFromFile() *Client {
+	s := authstore.New()
+
+	var creds *authstore.Credentials
+	creds, err := s.Read()
+	if err != nil {
+		creds = &authstore.Credentials{}
+	}
+
+	c.Tenant = creds.Tenant
+	c.Email = creds.Email
+	c.Token = creds.Token
+
+	return c
 }
 
 func (c *Client) Req(method, url string) ([]byte, error) {
