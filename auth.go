@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/vmorsell/jira-cli/authstore"
+	"github.com/vmorsell/jira/authstore"
 
 	cli "github.com/urfave/cli/v2"
 )

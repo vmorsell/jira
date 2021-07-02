@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/vmorsell/jira-cli/authstore"
+	"github.com/vmorsell/jira/authstore"
 )
 
 type Client struct {

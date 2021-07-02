@@ -1,4 +1,4 @@
-module github.com/vmorsell/jira-cli
+module github.com/vmorsell/jira
 
 go 1.16
 

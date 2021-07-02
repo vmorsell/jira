@@ -5,7 +5,7 @@ import (
 	"os"
 	"text/tabwriter"
 
-	"github.com/vmorsell/jira-cli/jira"
+	"github.com/vmorsell/jira/jira"
 
 	cli "github.com/urfave/cli/v2"
 )
